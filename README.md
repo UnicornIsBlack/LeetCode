@@ -48,3 +48,35 @@ leetcode
 
 
 ## 2.  ##
+
+
+
+# 斐波那契额数列生成 #
+## 1. 方法一 ##
+使用递归的方法
+
+	int climbStairs(int n)
+    {
+    	if ( n == 0 || n == 1 )
+		{
+			return 1;
+		}
+		return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+
+## 2. 方法二 ##
+使用for循环的方法
+
+    int climbStairs(int n)
+    {
+    	int stepOne = 1;
+    	int stepTwo = 1;
+    	int stepReturn = 1;
+    	for ( int i = 2; i <= n; i++ )
+    	{
+    		stepReturn = stepOne + stepTwo;
+    		stepOne = stepTwo;
+    		stepTwo = stepReturn;
+    	}
+    	return stepReturn;
+    }
