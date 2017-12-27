@@ -23,8 +23,32 @@ struct TreeNode
 	struct TreeNode *right;	
 };
 
+int maxDepth(struct TreeNode* root)
+{
+	if ( root == NULL )
+		return 0;
+
+	int left = maxDepth(root->left) + 1;
+	int right = maxDepth(root->right) + 1;
+
+	if ( left > right )
+		return left;
+	else
+		return right;
+}
+
 int** levelOrderBottom(struct TreeNode* root, int** columnSizes, int* returnSize)
 {
+	(*returnSize) = maxDepth(root);
+	(*columnSizes) = (int*)malloc((*returnSize)*sizeof(int));
+	int** returnArray = (int**)malloc((*returnSize)*sizeof(int*));
+
+	if ( root == NULL )
+		return returnArray;
+
+	int size = 1;
+	int arrayEnd = (*returnSize) - 1;
+	
 
 }
 
