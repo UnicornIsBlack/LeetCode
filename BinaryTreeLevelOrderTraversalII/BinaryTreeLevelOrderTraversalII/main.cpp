@@ -73,7 +73,7 @@ int** levelOrderBottom(struct TreeNode* root, int** columnSizes, int* returnSize
 
 	if ( root == NULL )
 		return returnArray;
-	
+	(*columnSizes)[2] = 0;
 	struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
 	queue->n = 0;
 	queue->fLastNode = (struct QueueNode*)malloc(sizeof(struct QueueNode));
@@ -93,7 +93,7 @@ int** levelOrderBottom(struct TreeNode* root, int** columnSizes, int* returnSize
 		q->next = p;
 		q = p;
 	}
-
+	initQueue(queue, root);
 	int num = (*returnSize) - 1;
 	q = queue;
 	while ( q != NULL )
@@ -108,16 +108,60 @@ int** levelOrderBottom(struct TreeNode* root, int** columnSizes, int* returnSize
 			qNode = nowNode->next;
 			free(nowNode);
 		}
+		(*columnSizes)[num] = q->n;
 		q = q->next;
 		free(queue);
 		queue = q;
+		num--;
 	}
 	return returnArray;
+
+}
+
+void createTree(struct TreeNode* root, struct TreeNode* left, struct TreeNode* right)
+{
+	root->left = left;
+	root->right = right;
+}
+
+void createBinaryTree(struct TreeNode* root)
+{	
+	struct TreeNode *rtLeft, *rtRight, *rLeft, *rRight;
+	rtLeft = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+	rtRight = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+	rLeft = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+	rRight = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+	root->val = 3;
+	rtLeft->val = 9;
+	rtRight->val = 20;
+	rLeft->val = 15;
+	rRight->val = 7;
+	createTree(root, rtLeft, rtRight);
+	createTree(rtLeft, NULL, NULL);
+	createTree(rtRight, rLeft, rRight);
+	createTree(rLeft, NULL, NULL);
+	createTree(rRight, NULL, NULL);
 
 }
 
 
 int main()
 {
+	struct TreeNode* root;
+	root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+	createBinaryTree(root);
+	int* columnSizes = { 0 };
+	int returnSize = 0;
+	int** returnArray = { 0 };
+	returnArray = levelOrderBottom(root, &columnSizes, &returnSize);
+	for ( int i = 0; i < returnSize; i++ )
+	{
+		int n = columnSizes[i];
+		for ( int j = 0; j < n; j++ )
+		{
+			printf("%d ", returnArray[i][j]);
+		}
+		printf("\n");
+	}
 	return 0;
 }
