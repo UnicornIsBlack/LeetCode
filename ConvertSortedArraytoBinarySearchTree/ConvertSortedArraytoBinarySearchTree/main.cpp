@@ -17,34 +17,30 @@ struct TreeNode
 	struct TreeNode *left;
 	struct TreeNode *right;
 };
-struct TreeNode* arrayToBST(int* nums, int low, int high,struct TreeNode* root)
+struct TreeNode* arrayToBST(int* nums, int low, int high)
 {
 	if ( low > high )
 	{
-		free(root);
-		return;
+		return NULL;
 	}
 	else
 	{
+		struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
 		int mid = (low + high) / 2;
 		root->val = nums[mid];
-		struct TreeNode* left = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-		struct TreeNode* right = (struct TreeNode*)malloc(sizeof(struct TreeNode));
 
-		arrayToBST(nums, low, mid - 1, left);
-		arrayToBST(nums, mid + 1, high, right);
+		root->left = arrayToBST(nums, low, mid - 1);
+		root->right = arrayToBST(nums, mid + 1, high);
+		return root;
 	}
 }
+
 struct TreeNode* sortedArrayToBST(int* nums, int numsSize)
 {
-	int low = 0;
-	int high = numsSize - 1;
-	struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-	arrayToBST(nums,low,high,root);
-	return root;
+	return arrayToBST(nums, 0, numsSize - 1);
 }
 
 int main()
 {
-	return 0
+	return 0;
 }
