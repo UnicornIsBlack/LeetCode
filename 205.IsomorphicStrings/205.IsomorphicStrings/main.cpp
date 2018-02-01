@@ -9,28 +9,24 @@ bool isIsomorphic(char* s, char* t)
 	if ( sLen != tLen )
 		return false;
 
-	char* replace = (char*)malloc(26 * sizeof(char));
-	bool* replaced = (bool*)malloc(26 * sizeof(bool));
-	for ( int i = 0; i < 26; i++ )
+	char* replace = (char*)malloc(128 * sizeof(char));
+	bool* replaced = (bool*)malloc(128 * sizeof(bool));
+	for ( int i = 0; i < 128; i++ )
 	{
-		replace[i] = '#';
+		replace[i] = '\0';
 		replaced[i] = false;
 	}
-	int sIndex;
-	int tIndex;
 	for ( int i = 0; i < sLen; i++ )
 	{
-		sIndex = s[i] - 'a';
-		tIndex = t[i] - 'a';
-		if ( replace[sIndex] == '#' )
+		if ( replace[s[i]] == '\0' )
 		{
-			if ( replaced[tIndex] )
+			if ( replaced[t[i]] )
 				return false;
-			replace[sIndex] = t[i];
-			replaced[tIndex] = true;
+			replace[s[i]] = t[i];
+			replaced[t[i]] = true;
 			continue;
 		}
-		if ( replace[sIndex] != t[i] )
+		if ( replace[s[i]] != t[i] )
 			return false;
 	}
 	return true;
@@ -38,7 +34,7 @@ bool isIsomorphic(char* s, char* t)
 
 int main()
 {
-	char s[] = "egga";
+	char s[] = "ega";
 	char t[] = "add";
 	bool r = isIsomorphic(s, t);
 	printf("%d\n", r);
