@@ -7,6 +7,8 @@
 typedef struct
 {
 
+
+
 } MyStack;
 
 /** Initialize your data structure here. */
