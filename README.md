@@ -90,4 +90,48 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 1. 任何两个相同的数异或得0
 2. 任何数与0异或得其本身
 
-2. 
+
+
+
+# 字符串 #
+
+----------
+1. 做字符串题时一定要在字符串结尾加'\0'。
+
+
+
+
+# 排序 #
+
+----------
+
+## 1. 快排 ##
+
+	void sort_quick(int* nums, int low, int high)
+	{
+		if ( low > high )
+			return;
+		int key = nums[low];
+		int tmp = 0;
+		int i = low, j = high;
+		while ( i < j )
+		{
+			while ( i < j && nums[j] >= key )
+				j--;
+			while ( i < j && nums[i] <= key )
+				i++;
+			if ( i < j )
+			{
+				tmp = nums[i];
+				nums[i] = nums[j];
+				nums[j] = tmp;
+			}
+		}
+		nums[low] = nums[i];
+		nums[i] = key;
+		sort_quick(nums, low, i - 1);
+		sort_quick(nums, i + 1, high);
+	}
+
+
+## 2. 冒泡 ##
