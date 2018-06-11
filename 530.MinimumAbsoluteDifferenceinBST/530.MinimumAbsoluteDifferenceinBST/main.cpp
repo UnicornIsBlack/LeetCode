@@ -17,67 +17,51 @@ struct TreeNode
 	struct TreeNode *right;
 };
 
+typedef struct ListNode
+{
+	int val;
+	struct ListNode *next;
+}*List;
 
-int getMinSubTree(struct TreeNode* root, int &first, int &second)
+List head = (List)malloc(sizeof(struct ListNode));
+List end = head;
+
+void middleSearch(struct TreeNode* root)
 {
 	if ( root == NULL )
 		return;
-	int sub = 0;
-	int min = -1;
-	if ( root->left == NULL )
-	{
-		if ( first < 0 )
-		{
-			first = root->val;
-			if ( root->right == NULL )
-				return -1;
-			else
-			{
-				min = getMinSubTree(root->right, first, second);
-				return;
-			}
-		}
-		if ( second < 0 )
-		{
-			second = root->val;
-			if ( root->right == NULL )
-				return second - first;
-			else
-			{
-				min = getMinSubTree(root->right, first, second);
-				return;
-			}
-		}
-		first = second;
-		second = root->val;
-		sub = second - first;
-		if ( root->right == NULL )
-			return sub;
-		else
-		{
-			min = getMinSubTree(root->right, first, second);
-
-		}
-	}
-	else
-	{
-		min = getMinSubTree(root->left, first, second);
-		if ( second < 0 )
-		{
-			second = root->val;
-			return second - first;
-		}
-
-	}
+	middleSearch(root->left);
+	List node = (List)malloc(sizeof(struct ListNode));
+	node->val = root->val;
+	node->next = end->next;
+	end->next = node;
+	end = node;
+	middleSearch(root->right);
 }
+
 int getMinimumDifference(struct TreeNode* root)
 {
-	if ( root == NULL )
-		return;
-	int first = -1;
-	int second = -1;
+	end->next = NULL;
+	middleSearch(root);
 	int min = -1;
-	min = getMinSubTree(root, first, second, min);
+	List node = head;
+	node = node->next;
+	int first = node->val;
+	node = node->next;
+	int second = node->val;
+	min = second - first;
+	node = node->next;
+	int mid = 0;
+	while ( node != NULL )
+	{
+		first = second;
+		second = node->val;
+		mid = second - first;
+		if ( mid < min )
+			min = mid;
+		node = node->next;
+	}
+	return min;
 }
 
 int main()
