@@ -17,10 +17,26 @@ struct TreeNode
 	struct TreeNode *right;
 };
 
+int max = 0;
 
+int maxNum(int a, int b)
+{
+	return a > b ? a : b;
+}
+int maxDepth(struct TreeNode* root)
+{
+	if ( root == NULL )
+		return 0;
+	int left = maxDepth(root->left);
+	int right = maxDepth(root->right);
+	max = maxNum(max, left + right);
+	return 1 + maxNum(left, right);
+
+}
 int diameterOfBinaryTree(struct TreeNode* root)
 {
-	return 0;
+	maxDepth(root);
+	return max;
 }
 
 int main()
