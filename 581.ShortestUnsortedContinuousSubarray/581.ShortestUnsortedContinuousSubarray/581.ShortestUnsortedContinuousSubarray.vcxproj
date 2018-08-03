@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BA0F0495-C048-408A-A910-48A2790DAD86}</ProjectGuid>
+    <ProjectGuid>{C30FB40C-5205-4CE5-BC8B-D54F4CC058BF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My575DistributeCandies</RootNamespace>
+    <RootNamespace>My581ShortestUnsortedContinuousSubarray</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
