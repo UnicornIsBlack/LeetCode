@@ -36,20 +36,37 @@ int findLHS(int* nums, int numsSize)
 {
 	int max = 0;
 	int count = 0;
+	int countSecond = 0;
 	int key = nums[0];
 	sortFast(nums, 0, numsSize - 1);
 	for ( int i = 0; i < numsSize; i++ )
 	{
-		if ( nums[i] - key == 0 || nums[i] - key == 1 )
+		if ( nums[i] - key == 0 )
 			count++;
+		else if ( nums[i] - key == 1 )
+		{
+			count++;
+			countSecond++;
+		}
 		else
 		{
 			if ( nums[i - 1] - key == 1 )
 			{
 				max = maxNum(max, count);
 			}
-			key = nums[i];
-			count = 1;
+
+			if ( nums[i] - nums[i - 1] == 1 )
+			{
+				count = countSecond + 1;
+				countSecond = 1;
+				key = nums[i - 1];
+			}
+			else
+			{
+				count = 1;
+				countSecond = 0;
+				key = nums[i];
+			}
 		}
 		if ( i == numsSize - 1 && nums[i] - key == 1)
 			max = maxNum(max, count);
