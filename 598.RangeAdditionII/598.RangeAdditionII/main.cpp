@@ -4,17 +4,11 @@
 
 int indexArray(int* arr, int arrSize)
 {
-	int max = arr[0];
-	int index = 0;
-	for ( int i = 0; i < arrSize; i++ )
+	int index = arrSize - 1;
+	for ( int i = arrSize - 1; i >= 0; i-- )
 	{
-		if ( i != 0 && arr[i] >= max )
-		{
-			max = arr[i];
+		if ( arr[i] > 0 )
 			index = i;
-		}
-		else if ( arr[i] < max )
-			break;
 	}
 	return index+1;
 }
@@ -36,9 +30,11 @@ int maxCount(int m, int n, int** ops, int opsRowSize, int opsColSize)
 		countRow[ops[i][0] - 1]++;
 		countCol[ops[i][1] - 1]++;
 	}
-	int maxRow = indexArray(countRow, m);
-	int maxCol = indexArray(countCol, n);
-	 
+	int rowIndex = indexArray(countRow, m);
+	int colIndex = indexArray(countCol, n);
+	free(countRow);
+	free(countCol);
+	return rowIndex * colIndex;
 }
 
 int main()
