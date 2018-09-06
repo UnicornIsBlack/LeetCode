@@ -135,3 +135,27 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 
 
 ## 2. 冒泡 ##
+
+
+
+
+
+
+# C++ #
+
+## 常用函数 ##
+
+1. 数组连续子序列相加
+
+		#include <numeric>
+		sum = accumulate(nums.begin(),nums.end(),0);//0 is sum's init
+2. 最大或最小数
+
+		#include <algorithm>
+		max();
+		min();
+3. 判断字符是否为字母，是否为数字
+
+		if ( isalpha(c) != 0 )//c is a-z
+		if ( isdigit(c) != 0 )//c is num
+4. 
