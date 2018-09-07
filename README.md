@@ -158,4 +158,11 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 
 		if ( isalpha(c) != 0 )//c is a-z
 		if ( isdigit(c) != 0 )//c is num
-4. 
+
+
+
+# TwoSum #
+
+## Hash ##
+
+1. set:有序的，底层基于RB-Tree，unordered_set:无序的，底层基于HashTable
