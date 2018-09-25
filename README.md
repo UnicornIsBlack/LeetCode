@@ -145,19 +145,76 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 
 ## 常用函数 ##
 
-1. 数组连续子序列相加
+1. set
+	
+		set<string>::iterator it = wordSet.find(words[i].substr(0, len));
+		if ( it != wordSet.end() )//存在
+2. 排序
+
+		sort(nums.begin(), nums.end());//由小到大
+3. string
+
+		string str = A + A;
+		str.append(A);
+		J.find(S[i]) != -1//判断S中的S[i]元素是否在J中
+	
+		//判断字符串B是否是C子串
+		string::size_type it;
+		it = C.find(B);
+		if ( it != string::npos )
+4. 数据交换
+
+		swap(a,b);//a，b交换值
+5. 累计求和
+
+		double sum = accumulate(nums.begin(), nums.begin() + k, 0);
+		//从nums数组begin开始的k个元素求和，sum初始为0
+6. vector
+				
+		vector<object> obj;
+		object o;
+		obj.push_back(o);//在vector尾部添加元素o
+		nums.insert(nums.begin() + i, val);//在index为i处插入val，i处原值后移
+		myList.erase(myList.begin() + index);//删除index处值
+
+		vector<int>::iterator it;//在primes中寻找setBits是否存在
+		it = find(primes.begin(), primes.end(), setBits);
+		if ( it != primes.end() )//存在
+ 
+7. 数组连续子序列相加
 
 		#include <numeric>
 		sum = accumulate(nums.begin(),nums.end(),0);//0 is sum's init
-2. 最大或最小数
+8. 最大或最小数
 
 		#include <algorithm>
 		max();
 		min();
-3. 判断字符是否为字母，是否为数字
+9. 判断字符是否为字母，是否为数字
 
 		if ( isalpha(c) != 0 )//c is a-z
 		if ( isdigit(c) != 0 )//c is num
+10. 自定义结构体
+
+		struct Index
+		{
+			int row;
+			int col;
+			bool operator <(const Index& other) const//在使用map、set时排序
+			{
+				if ( row < other.row )
+					return true;
+				else if ( row == other.row )
+				{
+					if ( col < other.col )
+						return true;
+					else
+						return false;
+				}
+				return false;
+			}
+		};
+11. 
 
 
 ## C++缺少的函数 ##
