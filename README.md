@@ -214,7 +214,51 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 				return false;
 			}
 		};
-11. 
+
+11. string to int
+
+		int count = atoi(str[0].c_str());
+		
+		#include <sstream>
+		void int2str(const int &int_temp,string &string_temp)  
+		{  
+		        stringstream stream;  
+		        stream<<int_temp;  
+		        string_temp=stream.str();   //此处也可以用 stream>>string_temp  
+		}  
+
+		void str2int(int &int_temp,const string &string_temp)  
+		{  
+		    stringstream stream(string_temp);  
+		    stream>>int_temp;  
+		}  
+
+12. map
+
+		//创建map变量
+		map<string, int> domainMap;
+		//创建迭代器
+		map<string, int>::iterator it;
+		//查询
+		it = domainMap.find(domain);
+
+		//修改、插入
+		if ( it != domainMap.end() )
+		{
+			domainMap[it->first] += count;
+		}
+		else
+			domainMap.insert(make_pair(domain, count));
+		//遍历
+		for ( it = domainMap.begin(); it != domainMap.end(); it++ )
+		{
+			string count;
+			int2str(it->second, count);
+
+			string str = count + " " + it->first;
+			domainsCount.push_back(str);
+		}
+13. 
 
 
 ## C++缺少的函数 ##
