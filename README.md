@@ -83,6 +83,15 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
     	return stepReturn;
     }
 
+# 求三角形面积 #
+
+## 已知三个点坐标 ##
+
+	double triangleArea(vector<int>& a, vector<int>& b, vector<int>& c)
+	{
+		double area = 0.5*abs(a[0] * b[1] + b[0] * c[1] + c[0] * a[1] - a[1] * b[0] - b[1] * c[0] - c[1] * a[0]);
+		return area;
+	}
 
 # 位运算 #
 
@@ -162,6 +171,11 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 		string::size_type it;
 		it = C.find(B);
 		if ( it != string::npos )
+
+		//将string中元素全部转换为小写
+		transform(str.begin(), str.end(), str.begin(), ::tolower);
+		//将string中元素全部转换为大写
+		transform(str.begin(), str.end(), str.begin(), ::toupper);
 4. 数据交换
 
 		swap(a,b);//a，b交换值
