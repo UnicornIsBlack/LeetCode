@@ -176,6 +176,12 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 		transform(str.begin(), str.end(), str.begin(), ::tolower);
 		//将string中元素全部转换为大写
 		transform(str.begin(), str.end(), str.begin(), ::toupper);
+
+		//字符串str后添加char类型c，不能使用+=
+		str = str + c;
+
+		//str删除从index开始的count个字符
+		str.erase(index,count);
 4. 数据交换
 
 		swap(a,b);//a，b交换值
