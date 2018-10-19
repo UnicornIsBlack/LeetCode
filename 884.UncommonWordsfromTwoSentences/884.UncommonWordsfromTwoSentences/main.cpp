@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <set>
+#include <map>
 
 using namespace std;
 
@@ -14,36 +14,34 @@ class Solution
 		vector<string> aStrs = split(A, " ");
 		vector<string> bStrs = split(B, " ");
 		vector<string> strList;
-		set<string> aWords;
-		set<string> aSet;
-		set<string> bWords;
-		set<string> bSet;
-		set<string>::iterator it;
+		map<string,int> words;
+		map<string,int>::iterator it;
 		for ( int i = 0; i < aStrs.size(); i++ )
 		{
-			it = aWords.find(aStrs[i]);
-			if ( it == aWords.end() )
-				aWords.insert(aStrs[i]);
+			it = words.find(aStrs[i]);
+			if ( it != words.end() )
+			{
+				it->second++;
+			}
+			else
+				words.insert(make_pair(aStrs[i], 1));
 		}
 		for ( int i = 0; i < bStrs.size(); i++ )
 		{
-			it = bWords.find(bStrs[i]);
-			if ( it == bWords.end() )
-				bWords.insert(bStrs[i]);
+			it = words.find(bStrs[i]);
+			if ( it != words.end() )
+			{
+				it->second++;
+			}
+			else
+				words.insert(make_pair(bStrs[i], 1));
 		}
-
-		for ( int i = 0; i < aStrs.size(); i++ )
+		for ( it = words.begin(); it != words.end(); it++ )
 		{
-			it = aSet.find(aStrs[i]);
-			if ( it == aSet.end() )
-				aSet.insert(aStrs[i]);
+			if ( it->second == 1 )
+				strList.push_back(it->first);
 		}
-		for ( int i = 0; i < bStrs.size(); i++ )
-		{
-			it = bSet.find(bStrs[i]);
-			if ( it == bSet.end() )
-				bSet.insert(bStrs[i]);
-		}
+		return strList;
 	}
 
 	vector<string> split(const string &s, const string &seperator)
