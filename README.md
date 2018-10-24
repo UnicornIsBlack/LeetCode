@@ -278,7 +278,17 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 			string str = count + " " + it->first;
 			domainsCount.push_back(str);
 		}
-13. 
+13. new
+
+		struct TreeNode
+		{
+			int val;
+			TreeNode *left;
+			TreeNode *right;
+			TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+		};
+		TreeNode* resultTree = new TreeNode(nodes[0]);
+14. 
 
 
 ## C++缺少的函数 ##
