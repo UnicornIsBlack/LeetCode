@@ -182,6 +182,9 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 
 		//str删除从index开始的count个字符
 		str.erase(index,count);
+		
+		//str截取从index开始，长度为len的字符串
+		str.substr(index,len);
 4. 数据交换
 
 		swap(a,b);//a，b交换值
