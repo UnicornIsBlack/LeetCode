@@ -12,11 +12,20 @@ class Solution
 	{
 		for ( int i = 0; i < nums.size(); i++ )
 		{
-			for ( int j = 0; j < nums.size() - i; j++ )
+			for ( int j = 1; j < nums.size() - i; j++ )
 			{
-
+				if ( nums[j - 1] > nums[j] )
+				{
+					int tmp = nums[j - 1];
+					nums[j - 1] = nums[j];
+					nums[j] = tmp;
+				}
 			}
+			k--;
+			if ( k == 0 )
+				return nums[nums.size() - 1 - i];
 		}
+		return nums[0];
 	}
 };
 
