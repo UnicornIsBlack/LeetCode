@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{12DA837D-0267-46F7-84A3-3B751EA2ABF5}</ProjectGuid>
+    <ProjectGuid>{BD86D568-BC9D-40E5-AA06-117382BCAC62}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My227BasicCalculatorII</RootNamespace>
+    <RootNamespace>My229MajorityElementII</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
