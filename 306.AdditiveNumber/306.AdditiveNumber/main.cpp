@@ -17,24 +17,33 @@ class Solution
 		{
 			for ( int j = 1; i + j < num.size(); j++ )
 			{
-				
-
+				if ( isAdditive(num, i, j) )
+					return true;
 			}
 		}
+		return false;
 	}
 
 	bool isAdditive(string num, int i, int j)
 	{
-		long num1 = str2int(string(num.begin(), num.begin() + i));
-		if ( num[i] == '0' )
+		if ( (num[0] == '0' && i != 1) || (num[i] == '0' && j != 1) )
 			return false;
+		long num1 = str2int(string(num.begin(), num.begin() + i));		
 		long num2 = str2int(string(num.begin() + i, num.begin() + i + j));
 		int num3Start = i + j;
-		while ( true )
+		while ( num3Start < num.size() )
 		{
 			long num3 = num1 + num2;
 			string str3 = int2str(num3);
+			if ( num3Start + str3.size() > num.size() )
+				return false;
+			if ( str3.compare(num.substr(num3Start, str3.size())) != 0 )
+				return false;
+			num3Start += str3.size();
+			num1 = num2;
+			num2 = num3;
 		}
+		return true;
 	}
 	string int2str(const long& num)
 	{
