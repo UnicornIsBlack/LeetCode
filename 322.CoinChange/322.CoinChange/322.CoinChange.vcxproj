@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{39E975FC-31EE-4A4B-B5C5-AF97A786950C}</ProjectGuid>
+    <ProjectGuid>{6B1BE125-9191-4465-BAC5-51F658E7978B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My318MaximumProductofWordLengths</RootNamespace>
+    <RootNamespace>My322CoinChange</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
