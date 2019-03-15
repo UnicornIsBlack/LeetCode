@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
+#include <set>
+#include <stack>
 #include <algorithm>
 
 using namespace std;
@@ -10,28 +13,25 @@ class Solution
 	public:
 	vector<string> findItinerary(vector<pair<string, string>> tickets)
 	{
+		unordered_map<string, multiset<string>> hash;
+		for ( auto ticket : tickets )
+			hash[ticket.first].insert(ticket.second);
 		vector<string> res;
-		vector<pair<string, string>> copy(tickets.begin(), tickets.end());
-		string start = "JFK";
-		res.push_back(start);
-		while ( tickets.size() != 0 )
+		stack<string> st;
+		st.push("JFK");
+		while ( !st.empty() )
 		{
-			string end = "";
-			int index;
-			for ( int i = 0; i < tickets.size(); i++ )
+			string start = st.top();
+			if ( hash.find(start) != hash.end() && hash[start].size() > 0 )
 			{
-				if ( tickets[i].first.compare(start) == 0 )
-				{
-					if ( end == "" || end.compare(tickets[i].second) > 0 )
-					{
-						end = tickets[i].second;
-						index = i;
-					}
-				}
+				st.push(*hash[start].begin());
+				hash[start].erase(hash[start].begin());
 			}
-			res.push_back(end);
-			start = end;
-			tickets.erase(tickets.begin() + index);
+			else
+			{
+				res.insert(res.begin(), start);
+				st.pop();
+			}
 		}
 		return res;
 	}
