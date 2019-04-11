@@ -55,18 +55,6 @@ class Solution
 			else
 				str += s[i];
 		}
-		if ( !st.empty() )
-		{
-			string s = st.top();
-			st.pop();
-			string numStr = st.top();
-			st.pop();
-			int num = str2int(numStr);
-			string result;
-			for ( int j = 0; j < num; j++ )
-				result += str;
-			res += result;
-		}
 		if ( st.empty() && str.compare("") != 0 )
 			res += str;
 		return res;
