@@ -29,22 +29,45 @@ class Solution
 	public:
 	Node* flatten(Node* head)
 	{
-		if ( !head )
-			return head;
-		Node* node = head;
-		while ( node != NULL )
-		{
-			if ( node->child != NULL )
-			{
-
-			}
-			node = node->next;
-		}
+		dfs(head);
+		return head;
 	}
 
 	Node* dfs(Node* head)
 	{
-		
+		if ( !head )
+			return head;
+		Node* node = head;
+		Node* end = node;
+		while ( node != NULL )
+		{
+			end = node;
+			if ( node->child != NULL )
+			{
+				Node* childEnd = dfs(node->child);
+				Node* next = node->next;
+				if ( next == NULL )
+				{
+					node->next = node->child;
+					node->next->prev = node;
+					node->child = NULL;
+					childEnd->next = NULL;
+					node = childEnd;
+				}
+				else
+				{
+					node->next = node->child;
+					node->child = NULL;
+					node->next->prev = node;
+					childEnd->next = next;
+					next->prev = childEnd;
+					node = next;
+				}
+			}
+			else
+				node = node->next;
+		}
+		return end;
 	}
 };
 
