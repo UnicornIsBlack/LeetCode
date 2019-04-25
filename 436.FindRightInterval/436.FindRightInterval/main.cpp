@@ -10,23 +10,30 @@ class Solution
 	public:
 	vector<int> findRightInterval(vector<vector<int>>& intervals)
 	{
-		vector<int> res(intervals.size(), -1);
+		int n = intervals.size();
+		vector<int> ans(n, -1);
+		vector<pair<vector<int>, int>> h;
 
-		for ( int i = 0; i < intervals.size(); i++ )
+		for ( int i = 0; i < n; i++ )
+			h.push_back(pair<vector<int>, int>(intervals[i], i));
+
+		sort(h.begin(), h.end(), [](pair<vector<int>, int> a, pair<vector<int>, int> b)
 		{
-			for ( int j = 0; j < intervals.size(); j++ )
+			return a.first[0] <= b.first[0] || (a.first[0] == b.first[0] && a.first[1] <= b.first[1]);
+		});
+
+		for ( int i = 0; i < n; i++ )
+		{
+			for ( int j = i + 1; j < n; j++ )
 			{
-				if ( j == i )
-					continue;
-				if ( intervals[j][0] >= intervals[i][1] )
+				if ( h[j].first[0] >= h[i].first[1] )
 				{
-					if ( res[i] == -1 || intervals[res[i]][0] > intervals[j][0] )
-						res[i] = j;
+					ans[h[i].second] = h[j].second;
+					break;
 				}
 			}
 		}
-
-		return res;
+		return ans;
 	}
 };
 
