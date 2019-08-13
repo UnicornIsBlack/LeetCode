@@ -342,7 +342,18 @@ LeetCode里的链表题目，都没有头节点，第一个节点就有数值。
 			}
 			return result;
 		}
-2. 
+2. split
+
+		vector<string> strSplit(const string& in, const string& delim)
+		{
+			regex re{ delim };
+			return vector<string>{
+				sregex_token_iterator(in.begin(), in.end(), re, -1),
+				sregex_token_iterator()
+			};
+		}
+
+3. 
 
 
 # TwoSum #
